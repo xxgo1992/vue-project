@@ -1,23 +1,13 @@
 <template id='abc'>
   <div id="app">
-    <topNav :user='user'></topNav>
+    <topNav :user='user' @reverseFun='reverseName'>
+      <!-- <p>a</p>
+      <p>b</p>
+      <p slot='c'>c</p> -->
+    </topNav>
     <sidebar></sidebar>
-    <img src="./assets/logo.png">
-    <h1>{{msg}}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://gitter.im/vuejs/vue" target="_blank">Gitter Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    <router-view></router-view>
+    <!-- <div v-bind:class={layout:1}></div> -->
   </div>
 </template>
 
@@ -32,11 +22,19 @@ export default {
       user:'Emily'
     }
   },
-  components:{topNav ,sidebar}
+  components:{topNav ,sidebar},
+  methods:{
+    reverseName(){
+      this.user = this.user.split('').reverse().join('')
+    }
+  }
 }
 </script>
 
 <style>
+body{
+  background: green
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -44,6 +42,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  width: 100%;
+  height: 100%;
 }
 
 h1, h2 {
@@ -63,4 +63,9 @@ li {
 a {
   color: #42b983;
 }
+body{
+  height: 1000px;
+  position: relative;
+}
+
 </style>

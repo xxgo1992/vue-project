@@ -11,15 +11,19 @@
         more</a>
         <div>Total Finish: {{tolitem | formatnum}}</div>
         <input type="text" @keyup.13='addItem' v-model='item' placeholder="something you want to do">{{item}}
+        <!-- <div v-bind:class={layout:1}></div> -->
+        <layout v-bind:class={show:isShow}></layout>
     </div>
 </template>
-<script type="text/javascript">
+<script>
+import layout from '../component/layout.vue'
     export default{
         data(){
             return {
                 username:'',
                 item:'',
                 defaultsize:3,
+                isShow:0,
                 items :[
                     {
                         title: 'yoga',
@@ -38,6 +42,7 @@
                 ]
             }
         },
+        components:{layout},
         mounted: function(){
           this.$nextTick(function(){
             this.getDate()
@@ -77,6 +82,7 @@
             },
             deleteItem (index){
                 this.items.splice(index, 1)
+                this.isShow = 1
             },
             getMore:function(){
               if(this.defaultsize != this.items.length)
@@ -106,6 +112,7 @@
         font-weight: bold;
         position: fixed;
         left: 2px;
+        bottom: 30px;
     }
     ul{
         width: 200px;
@@ -139,5 +146,8 @@
     }
     .more{
       color: 
+    }
+    .show{
+      display: block
     }
 </style>
