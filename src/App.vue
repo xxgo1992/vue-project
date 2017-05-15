@@ -25,7 +25,7 @@
 import topNav from './component/top.vue'
 import sidebar from './component/sidebar.vue'
 export default {
-  name: 'app', //the element inside template 
+  name: 'app', //the element inside template ！！！！
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
